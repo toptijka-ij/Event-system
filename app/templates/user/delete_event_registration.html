@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Отмена регистрации на мероприятие</h3>
+<br>
+<div class="alert alert-dark" role="alert">
+    <form method="post">
+        <div class="d-flex w-100 justify-content-between d-inline-block">
+            <h5 class="alert-heading">Вы уверенны, что хотите отменить свою запись на мероприятие "{{event.name}}"?</h5>
+            <input type="submit" class="btn btn-outline-dark" value="Отменить">
+        </div>
+    </form>
+</div>
+{% endblock %}

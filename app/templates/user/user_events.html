@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Все мероприятия пользователя {{user.username}}</h3>
+<br>
+{% if events %}
+{% for event in events %}
+<div class="alert alert-primary" role="alert">
+    <div class="d-flex w-100 justify-content-between">
+        <h5 class="alert-heading">{{event.name}}</h5>
+        <small class="text-muted">Статус:
+            {% if event.status %}
+            ожидается
+            {% else %}
+            проведён
+            {% endif %}
+        </small>
+    </div>
+    <p class="mb-1">Когда: {{event.ev_date}}</p>
+    {% if event.guests %}
+    <p class="mb-1">Приглашённые авторы: {% for author in event.guests %} {{author}} {% endfor %}</p>
+    {% endif %}
+    <div class="inline-block" align="right">
+        <a href="/events/{{event.id}}" type="button" class="btn btn-outline-dark">Детальнее</a>
+        <a href="/user/{{user.id}}/event/{{event.id}}/delete" type="button" class="btn btn-outline-dark">Отменить
+            регистрацию</a>
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<div class="alert alert-primary alert-header" role="alert">На данный момент вы не зарегистрированы ни на одно
+    мероприятие
+</div>
+{% endif %}
+{% endblock %}

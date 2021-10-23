@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Добавить{% endblock %}
+{% block content %}
+<h3>Редактировать мероприятие</h3>
+<br>
+<form method="post">
+    <div class="form-group">
+        <label for="name">Название мероприятия</label>
+        <input type="text" name="name" id="name" class="form-control" value="{{event.name}}">
+    </div>
+    <div class="form-group">
+        <label for="date">Дата проведения</label>
+        <input type="date" name="date" id="date" class="form-control" value="{{ev_date}}">
+    </div>
+    <div class="form-group">
+        <label for="time">Время проведения</label>
+        <input type="time" name="time" id="time" class="form-control" value="{{ev_time}}">
+    </div>
+<!--    <div class="form-group">-->
+<!--        <label for="time">Приглашенные авторы (необязательно)</label>-->
+<!--        <select id="authors" name="authors" class="form-control" multiple>-->
+<!--            {% for author in authors %}-->
+<!--            <option value="{{author.name}}">{{author.name}}</option>-->
+<!--            {% endfor %}-->
+<!--        </select>-->
+<!--    </div>-->
+    <input type="submit" class="btn btn-primary" value="Сохранить">
+</form>
+
+{% endblock %}

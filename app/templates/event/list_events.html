@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Мероприятия{% endblock %}
+{% block content %}
+<div class="dropdown open" style="position: absolute; right: 110px">
+  <button class="btn btn-outline-secondary dropdown-toggle"
+          type="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+    Сортировать
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="/events/all">Все</a>
+    <a class="dropdown-item" href="/events/upcoming">Предстоящие</a>
+  </div>
+</div>
+<h3>Все мероприятия</h3>
+<br>
+{% for event in events %}
+<div class="alert alert-primary" role="alert">
+    <div class="d-flex w-100 justify-content-between">
+        <h5 class="alert-heading">{{event.name}}</h5>
+        <small class="text-muted">Статус: {{event.status}}</small>
+    </div>
+    <p class="mb-1">Когда: {{event.ev_date}}</p>
+    {% if event.guests %}
+    <p class="mb-1">Приглашённые авторы: {% for author in event.guests %} {{author}} {% endfor %}</p>
+    {% endif %}
+    <div align="right"><a href="/events/{{event.id}}" type="button" class="btn btn-outline-dark">Детальнее</a></div>
+</div>
+{% endfor %}
+{% endblock %}

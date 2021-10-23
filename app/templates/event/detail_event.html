@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Подробно{% endblock %}
+{% block content %}
+<h3 class="alert-heading">{{event.name}}</h3>
+<div class="alert alert-primary">
+    <div class="d-flex w-100 justify-content-between">
+    </div>
+    <p class="mb-1">Когда: {{event.ev_date}}</p>
+    {% if event.guests %}
+    <p class="mb-1">Приглашённые авторы: {% for author in event.guests %}{{author}} {% endfor %}</p>
+    {% endif %}
+    {% if current_user.is_authenticated %}
+    <div align="right">
+        <a href="/events/{{event.id}}/register" type="button" class="btn btn-outline-dark">Зарегистрироваться</a>
+        {% if current_user.is_admin %}
+        <a href="/events/{{event.id}}/update" type="button" class="btn btn-outline-dark">Редактировать</a>
+        <a href="/events/{{event.id}}/delete" type="button" class="btn btn-outline-dark">Удалить</a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
